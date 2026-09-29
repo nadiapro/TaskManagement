@@ -1,0 +1,22 @@
+# Build results
+bin/
+obj/
+
+# Visual Studio Code
+.vscode/
+
+# User-specific files
+*.user
+*.suo
+
+# Rider / JetBrains
+.idea/
+
+# macOS
+.DS_Store
+
+# User Secrets
+secrets.json
+
+# Logs
+*.log

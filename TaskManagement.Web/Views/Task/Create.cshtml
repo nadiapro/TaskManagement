@@ -1,0 +1,38 @@
+@model TaskManagement.Business.ViewModels.TaskCreateViewModel
+@{
+    ViewData["Title"] = "ایجاد کار";
+}
+
+<h2 class="mb-4">ایجاد کار</h2>
+
+<form asp-action="Create" method="post">
+
+    <div class="mb-3">
+        <label asp-for="Title" class="form-label"></label>
+        <input asp-for="Title" class="form-control"/>
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label"></label>
+        <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+    </div>
+    <div class="mb-3">
+    <label asp-for="AssignedToUserId" class="form-label"></label>
+
+    <select asp-for="AssignedToUserId" class="form-control"
+            asp-items="@(ViewData["Users"] as List<SelectListItem>)">
+
+        <option value="">-- انتخاب کاربر --</option>
+
+    </select>
+</div>
+
+    <button type="submit" class="btn btn-primary">ثبت</button>
+    <a asp-action="Index" class="btn btn-secondary">
+        بازگشت
+    </a>
+</form>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<style>
+.project-description {
+    padding: 40px 45px;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+}
+.project-description h2 {
+    font-size: 25px;
+    font-weight: 520;
+    padding: 20px;
+    border-bottom: 3px solid rgb(70, 84, 243);
+    border-radius: 10px;
+}
+.project-description p {
+    margin-top: 18px;
+    color: #4b5563;
+    font-size: 16px;
+    line-height: 2;
+    text-align: justify;
+}
+</style>
+
+<div class="project-description">
+    <h2>سامانه مدیریت کارها - Task Management</h2>
+    
+    <p>
+        پروژه <strong>Task Management</strong> یک سامانه مدیریت کارها مبتنی بر
+        <strong>ASP.NET Core 10 MVC</strong> است که با استفاده از
+        <strong>C#، Entity Framework Core و SQL Server</strong> توسعه داده شده است.
+        این سامانه امکان ثبت‌نام و ورود کاربران، ایجاد، ویرایش و حذف وظایف،
+        اختصاص وظایف به کاربران و مدیریت وظایف را فراهم می‌کند.
+    </p>
+
+    <p>
+        ساختار پروژه بر پایه <strong>Three-Tier Architecture</strong> طراحی شده
+        و لایه‌های Presentation، Business و Data از یکدیگر تفکیک شده‌اند.
+        برای دسترسی به داده‌ها از <strong>Repository Pattern</strong> و برای
+        احراز هویت و مدیریت کاربران از <strong>ASP.NET Core Identity</strong>
+        استفاده شده است.
+    </p>
+
+    <p>
+        همچنین حذف وظایف به‌صورت <strong>Soft Delete</strong> انجام می‌شود و
+        کنترل دسترسی کاربران بر اساس مالکیت و تخصیص وظیفه مدیریت می‌شود.
+    </p>
+
+</div>

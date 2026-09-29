@@ -1,0 +1,76 @@
+@model IEnumerable<TaskManagement.Business.ViewModels.TaskIndexViewModel>
+
+@{
+    ViewData["Title"] = "کارها";
+}
+
+@if (TempData["Message"] is string message)
+{
+    <div class="alert alert-info" role="alert">
+    @message
+    </div>
+}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>کارها</h1>
+<a asp-controller="Task" asp-action="Create" class="btn btn-success"> ایجاد کار </a>
+</div>
+<div class="d-flex align-items-center mb-3 gap-1">
+    <a asp-action="Index" asp-route-assigned="false" class="btn btn-sm btn-info text-dark">همه کارهای من</a>
+    <a asp-action="Index" asp-route-assigned="true" class="btn btn-sm btn-primary">فقط اختصاص یافته به من</a>
+</div>
+<table class="table table-bordered table-striped text-center align-middle">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.First().Title)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Description)</th>
+            <th>@Html.DisplayNameFor(model => model.First().CreatedByUserName)</th>
+            <th>@Html.DisplayNameFor(model => model.First().AssignedToUserName)</th>
+            <th>@Html.DisplayNameFor(model => model.First().CreatedAtPersian)</th>
+            <th>@Html.DisplayNameFor(model => model.First().UpdatedAtPersian)</th>
+            <th>@Html.DisplayNameFor(model => model.First().DeletedAtPersian)</th>    
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var task in Model)
+        {
+            <tr class="@(task.IsDeleted ? "table-danger" : "")">
+                <td>@task.Title</td>
+                <td>@task.Description</td>
+                <td>@task.CreatedByUserName</td>
+                <td>@(task.AssignedToUserName ?? "-")</td>
+                <td>@task.CreatedAtPersian</td>
+                <td>@(task.UpdatedAtPersian ?? "-")</td>
+                <td>@(task.DeletedAtPersian ?? "-")</td>
+                <td>
+                @if (!task.IsDeleted)
+                {
+                        if (task.Updatable == true)
+                        {
+                           <a asp-action="Edit" asp-route-id="@task.Id" class="btn btn-sm btn-warning">ویرایش</a>
+                        }
+                        if(task.Deletable == true)
+                        {
+                            <form asp-action="Delete"
+                            asp-route-id="@task.Id"
+                            method="post"
+                            style="display:inline;"
+                            onsubmit="return confirmDelete();">
+
+                            <button type="submit" class="btn btn-sm btn-danger">حذف</button>
+
+                            </form>
+                        }
+                }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    function confirmDelete() {
+        return confirm("آیا از حذف این رکورد اطمینان دارید؟");
+    }
+</script>
